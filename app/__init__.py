@@ -2,6 +2,7 @@ from flask import Flask
 from flask_scss import Scss
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+import sass
 
 db = SQLAlchemy()
 
@@ -17,7 +18,7 @@ def create_app(config_name):
   # TODO: auth blueprint registration
 
   # initialize app extensions
-  Scss(app)
+  sass.compile(dirname=(f'{app.root_path}\\static\\sass', f'{app.root_path}\\static\\css'), output_style='compressed')
   db.init_app(app)
 
   return app
