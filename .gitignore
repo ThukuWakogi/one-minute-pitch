@@ -2,3 +2,5 @@ virtual
 start.*
 *.pyc
 .vscode
+app/static/css
+.vscode
