@@ -32,4 +32,4 @@ def load_pitch_by_category(pitch_category_id):
   pitch_category =  PitchCategory.query.filter_by(id=pitch_category_id).first()
   pitches = Pitch.query.filter_by(category_id=pitch_category_id).all()
 
-  return render_template('pitches-by-category.html', pitch_category=pitch_category, pitches=pitches)
+  return render_template('pitches-by-category.html', pitch_category=pitch_category, pitches=pitches, number_of_pitches=len(pitches))

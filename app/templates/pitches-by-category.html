@@ -3,6 +3,30 @@
 {% block content %} 
   <div style="height: 64px;"></div>
   <div class="cstm-container">
-    
+
+    {% if number_of_pitches == 0 %}
+      <div class="cstm-pitches-container-title">
+        <div class="cstm-pitches-container-title--content">
+          <h1 class="mdc-typography--headline3 cstm-gutterbottom">There are currently no pitches</h1>
+          <p class="mdc-typography--body1">Be the first to add a pitch in this category! 😃</p>
+        </div>
+        <div class="cstm-add-pitch">
+          <div class="mdc-card">
+            <a href="" class="cstm-default-link-look">
+              <div class="mdc-card__primary-action" tabindex="0">
+                <div>
+                    <i class="material-icons">add_circle_outline</i>
+                </div>
+                <div>
+                  <h4 class="mdc-typography--headline6">add pitch</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div></div>
+    {% endif %}
   </div>
 {% endblock %}
