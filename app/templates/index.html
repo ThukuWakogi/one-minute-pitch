@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>this is the day</h1>
+<div style="height: 64px;"></div>
+<div class="cstm-container">
+  <div class="cstm-text-center cstm-category-title">
+    <h1 class="mdc-typography--headline2 cstm-gutterbottom">Greetings, Fellow user</h1>
+    <h4 class="mdc-typography--headline5">Choose a category to view pitches</h4>
+  </div>
+  <div class="cstm-categories mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      {% for category in pitch_categories %}
+        <div class="mdc-layout-grid__cell">
+          <div class="mdc-card cstm-category">
+            <a href="/pitches/{{ category.id }}" class="mdc-card__primary-action">
+              <div tabindex="0">
+                <div>
+                  <div class="mdc-card__media mdc-card__media--square cstm-pitch-category-image"></div>
+                  <div>
+                    <h2 class="mdc-typography mc-typography--headline6">
+                      {{ category.category }}
+                    </h2>
+                    <h3 class="mdc-typography mdc-typography--subtitle2">
+                      click to view category
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__actions-buttons">
+                <a class="mdc-button mdc-card__action mdc-card__action--button">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock %}

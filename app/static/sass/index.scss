@@ -1,10 +1,66 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
- 
- * {
-   margin: 0;
-   padding: 0;
- }
 
- body {
-   font-family: 'Montserrat', sans-serif;
- }
+$default-value: 8px;
+
+@function multiply-value($unit) {
+  @return $default-value * $unit
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+}
+
+.cstm-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cstm-category-title {
+  margin-bottom: multiply-value(6);
+  .cstm-text-center {
+    text-align: center;
+  }
+}
+
+.cstm-text-center {
+  text-align: center;
+}
+
+.cstm-gutterbottom {
+  margin-bottom: multiply-value(3);
+}
+
+.cstm-pitch-category-image{
+  background: url('../images/folder_pen.png');
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+}
+
+.cstm-category{
+  padding: multiply-value(1);
+  & > a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    padding: multiply-value(1);
+    & > div > div {
+      display: flex;
+      width: 100%;
+      & > div {
+        margin: multiply-value(1)
+      }
+    }
+  }
+}
