@@ -41,7 +41,7 @@ class PitchCategory(db.Model):
   '''
   __tablename__ = 'pitch_categories'
   id = db.Column(db.Integer, primary_key=True)
-  title = db.Column(db.String(255), nullable=False)
+  category = db.Column(db.String(255), nullable=False)
   pitches = db.relationship('Pitch', backref='pitch_collection', lazy='dynamic')
 
 class Pitch(db.Model):
@@ -57,8 +57,8 @@ class Pitch(db.Model):
   title = db.Column(db.String(255), nullable=False)
   body = db.Column(db.String(), nullable=False)
   category_id = db.Column(db.Integer, db.ForeignKey('pitch_categories.id'), nullable=False)
-  votes = db.relationship('PitchVote', backref='pitch_votes', lazy='dynamic')
-  comments = db.relationship('PitchComment', backref='pitch_comments', lazy='dynamic')
+  # comments = db.relationship('PitchComment', backref='pitch_comments', lazy='dynamic')
+  # votes = db.relationship('PitchVote', backref='pitch_votes', lazy='dynamic')
 
 class PitchVote(db.Model):
   '''
