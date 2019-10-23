@@ -32,11 +32,28 @@ body, html {
   align-items: center;
 }
 
+.cstm-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cstm-align-items-center {
+  align-items: center;
+}
+
+.cstm-fullwidth {
+  width: 100%
+}
+
 .cstm-category-title {
   margin-bottom: multiply-value(6);
   .cstm-text-center {
     text-align: center;
   }
+}
+
+.cstm-textfield-margin {
+  margin: multiply-value(1) 0px;
 }
 
 .cstm-text-center {
@@ -99,5 +116,31 @@ body, html {
     & > div {
       margin: multiply-value(0.5)
     }
+  }
+}
+
+.cstm-register-container-content {
+  form {
+    padding: 0px multiply-value(1);
+  }
+  h2 {
+    margin-top: 8%;
+    margin-bottom: multiply-value(2);
+  }
+  p {
+    margin-bottom: multiply-value(3);
+  }
+  .cstm-login-register-redirect {
+    margin-bottom: 0;
+    margin-top: multiply-value(2);
+  }
+}
+
+.cstm-form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  input {
+    margin: multiply-value(1) 0px multiply-value(1) multiply-value(1)
   }
 }
