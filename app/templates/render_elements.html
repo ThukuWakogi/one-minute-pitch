@@ -1,0 +1,11 @@
+{% macro render_textfield(field) %}
+  <div class="mdc-text-field cstm-fullwidth cstm-textfield-margin">
+    {{ field(**kwargs)|safe }}
+    <div class="mdc-line-ripple"></div>
+    <label for="{{ field.id }}" class="mdc-floating-label">{{ field.name }}</label>
+  </div>
+{% endmacro %}
+
+{% macro render_submitfield(field) %}
+  {{ field(**kwargs)|safe }}
+{% endmacro %}
