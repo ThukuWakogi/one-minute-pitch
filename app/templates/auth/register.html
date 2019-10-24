@@ -7,12 +7,17 @@
     <div class="cstm-auth-container-content cstm-flex-column cstm-text-center">
       <h2 class="mdc-typography--headline2 cstm-gutterbottom">Join us! 😀</h2>
       <p class="mdc-typography--body1">You are an awesome addition to our community.</p>
-      <form action="" method="post" class="form" role="form">
+      <form action="/authenticate/register" method="post" class="form" role="form">
         {{ form.csrf_token }}
         {{ render_textfield(form.username, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.email, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.password, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.password_confirm, class='mdc-text-field__input cstm-fullwidth') }}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <p class="mdc-typography--body1" style="color: red;">{{ messages[0] }}</p>
+          {% endif %}
+        {% endwith %}
         <div class="cstm-form-actions">
           {{ render_submitfield(form.submit, class='mdc-button mdc-button--raised') }}
         </div>
@@ -25,5 +30,9 @@
     textFieldElements.forEach((textFieldEl) => {
       mdc.textField.MDCTextField.attachTo(textFieldEl);
     });
+    const helperTextElements = [].slice.call(document.querySelectorAll('.mdc-text-field-helper-text'));
+    helperTextElements.forEach((helperTextEl) => {
+      mdc.textField.MDCTextFieldHelperText.attachTo(helperTextEl);
+    })
   </script>
 {% endblock %}
