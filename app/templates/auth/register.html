@@ -9,7 +9,7 @@
       <p class="mdc-typography--body1">You are an awesome addition to our community.</p>
       <form action="/authenticate/register" method="post" class="form" role="form">
         {{ form.csrf_token }}
-        {{ render_textfield(form.username, class='mdc-text-field__input cstm-fullwidth') }}
+        {{ render_textfield(form.name, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.email, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.password, class='mdc-text-field__input cstm-fullwidth') }}
         {{ render_textfield(form.password_confirm, class='mdc-text-field__input cstm-fullwidth') }}

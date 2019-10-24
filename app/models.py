@@ -18,22 +18,11 @@ class User(UserMixin, db.Model):
 
   __tablename__ = 'users'
   id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(255), index=True, nullable=False)
+  name = db.Column(db.String(255), index=True, nullable=False)
   email  = db.Column(db.String(255), index=True, nullable=False)
   password_secure = db.Column(db.String(255), nullable=False)
   votes = db.relationship('PitchVote', backref='pitch_votes', lazy='dynamic')
   comments = db.relationship('PitchComment', backref='pitch_comments', lazy='dynamic')
-
-  # @property
-  # def password(self):
-  #   raise AttributeError('You cannot read the password attribute')
-
-  # @password.setter
-  # def password(self, password):
-  #   self.password_secure = generate_password_hash(password)
-  
-  # def verify_password(self, password):
-  #   return check_password_hash(self.password_secure, password)
   
   def __repr__(self):
     return f'User{self.password_secure}'
@@ -62,9 +51,8 @@ class Pitch(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(255), nullable=False)
   body = db.Column(db.String(), nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   category_id = db.Column(db.Integer, db.ForeignKey('pitch_categories.id'), nullable=False)
-  # comments = db.relationship('PitchComment', backref='pitch_comments', lazy='dynamic')
-  # votes = db.relationship('PitchVote', backref='pitch_votes', lazy='dynamic')
 
 class PitchVote(db.Model):
   '''

@@ -10,7 +10,7 @@
       {% if current_user.is_authenticated %}
         <a href="" class="mdc-button mdc-button--unelevated">
           <i class="material-icons mdc-button__icon" aria-hidden="true">person</i>
-          <span class="mdc-button__label">{{ current_user.username }}</span>
+          <span class="mdc-button__label">{{ current_user.name }}</span>
         </a>
         <a href="/authenticate/logout" class="mdc-button mdc-button--unelevated">logout</a>
       {% else %}
