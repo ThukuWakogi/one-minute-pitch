@@ -4,4 +4,4 @@ start.*
 .vscode
 app/static/css
 .vscode
-migrations
+#migrations
