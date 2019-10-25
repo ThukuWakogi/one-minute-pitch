@@ -8,11 +8,11 @@
       <div class="cstm-pitches-container-title">
         <div class="cstm-pitches-container-title--content">
           <h1 class="mdc-typography--headline3 cstm-gutterbottom">There are currently no pitches</h1>
-          <p class="mdc-typography--body1">Be the first to add a pitch in this category! 😃</p>
+          <p class="mdc-typography--body1">Be the first to add a pitch in the '{{ pitch_category.category }}' category! 😃</p>
         </div>
         <div class="cstm-add-pitch">
           <div class="mdc-card">
-            <a href="" class="cstm-default-link-look">
+            <a href="/pitchform/add/{{ pitch_category.id }}" class="cstm-default-link-look">
               <div class="mdc-card__primary-action" tabindex="0">
                 <div>
                     <i class="material-icons">add_circle_outline</i>
@@ -26,7 +26,51 @@
         </div>
       </div>
     {% else %}
-      <div></div>
+      <div class="cstm-pitches-container-title">
+        <div
+          class="cstm-pitches-container-title--content-present">
+          <h4 class="mdc-typography--headline4">{{ pitch_category.category }}</h4>
+        </div>
+      </div>
+      <div class="mdc-layout-grid">
+          <div class="mdc-layout-grid__inner">
+            {% for pitch in pitches %}
+              <div class="mdc-layout-grid__cell">
+                <div class="mdc-card cstm-pitch">
+                  <div class="mdc-card__primary-action" tabindex="0">
+                    <h2 class="mdc-typography mdc-typography--headline6">
+                      {{ pitch.title }}
+                    </h2>
+                    <h3 class="mdc-typography mdc-typography--subtitle2">by certain user</h3>
+                    <div class="mdc-typography mdc-typography--body2 cstm-body">
+                      {{ pitch.body[:150] + '...' if pitch.is_body_more_than_150 else pitch.body }}
+                    </div>
+                  </div>
+                  <div class="mdc-card__actions">
+                    <div class="mdc-card__action-buttons">
+                      <a href="" class="mdc-button mdc-card__action mdc-card__action--button">view</a>
+                    </div>
+                    <div class="mdc-card__action-icons">
+                      <a href="" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-label="upvote" aria-hidden="false">
+                        <i class="material-icons mdc-icon-button__icon">thumb_up_alt</i>
+                      </a>
+                      <a href="" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-label="downvote" aria-hidden="false">
+                        <i class="material-icons mdc-icon-button__icon">thumb_down_alt</i>
+                      </a>
+                      <a href="" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-label="comment" aria-hidden="false">
+                        <i class="material-icons mdc-icon-button__icon">comment</i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
     {% endif %}
   </div>
+  <a href="/pitchform/add/{{ pitch_category.id }}" class="mdc-fab mdc-fab--extended cstm-fab" aria-label="Favorite">
+    <i class="mdc-fab__icon material-icons">add</i>
+    <span class="mdc-fab__label">add pitch</span>
+  </a>
 {% endblock %}

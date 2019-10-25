@@ -30,9 +30,5 @@
     textFieldElements.forEach((textFieldEl) => {
       mdc.textField.MDCTextField.attachTo(textFieldEl);
     });
-    const helperTextElements = [].slice.call(document.querySelectorAll('.mdc-text-field-helper-text'));
-    helperTextElements.forEach((helperTextEl) => {
-      mdc.textField.MDCTextFieldHelperText.attachTo(helperTextEl);
-    })
   </script>
 {% endblock %}

@@ -54,6 +54,9 @@ class Pitch(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   category_id = db.Column(db.Integer, db.ForeignKey('pitch_categories.id'), nullable=False)
 
+  def is_body_more_than_150(self):
+    return len(self.body) >= 150 if self.body is not None else False
+
 class PitchVote(db.Model):
   '''
   maps to pitch_votes table in database

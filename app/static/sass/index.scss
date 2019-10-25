@@ -76,7 +76,7 @@ body, html {
   color: black;
 }
 
-.cstm-category{
+.cstm-category, .cstm-pitch{
   padding: multiply-value(1);
   & > a {
     display: flex;
@@ -107,6 +107,9 @@ body, html {
   }
   & > .cstm-pitches-container-title--content {
     margin-top: 18%;
+  }
+  & > .cstm-pitches-container-title--content-present {
+    margin-top: multiply-value(2);
   }
   a > div {
     display: flex !important;
@@ -146,4 +149,31 @@ body, html {
   input {
     margin: multiply-value(1) 0px multiply-value(1) multiply-value(1)
   }
+}
+
+.cstm-text-area {
+  height: 130px !important;
+}
+
+.pitch-form {
+  width: 94%;
+  margin: auto;
+}
+
+.cstm-pitch {
+  & > div > .cstm-body {
+    padding-top: 1rem;
+  }
+}
+
+.cstm-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cstm-fab {
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 5px !important;
 }

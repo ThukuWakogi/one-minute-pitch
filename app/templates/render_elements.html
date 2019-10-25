@@ -9,3 +9,33 @@
 {% macro render_submitfield(field) %}
   {{ field(**kwargs)|safe }}
 {% endmacro %}
+
+{% macro render_textarea(field) %}
+  <div class="mdc-text-field cstm-text-area cstm-fullwidth cstm-textfield-margin">
+    {{ field(**kwargs)|safe }}
+    <div class="mdc-line-ripple"></div>
+    <label for="{{ field.id }}" class="mdc-floating-label">{{ field.name }}</label>
+  </div>
+{% endmacro %}
+
+{% macro render_select(field, options) %}
+  <div class="mdc-select cstm-fullwidth cstm-textfield-margin">
+    {{ field(**kwargs)|safe }}
+    <i class="mdc-select__dropdown-icon"></i>
+    <div class="mdc-select__selected-text" style="text-align: left;"></div>
+    <div class="mdc-select__menu mdc-menu mdc-menu-surface cstm-fullwidth" style="width: 84%;">
+      <ul class="mdc-list">
+        <li
+          class="mdc-list-item mdc-list-item--selected mdc-list-item--disabled"
+          data-value=""
+          arial-selected="true"
+        ></Select></li>
+        {% for option in options %}
+          <li class="mdc-list-item" data-value="{{ option.id }}">{{ option.category }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <span class="mdc-floating-label">{{ field.name }}</span>
+    <div class="mdc-line-ripple"></div>
+  </div>
+{% endmacro %}

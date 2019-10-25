@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% from "render_elements.html" import render_textfield, render_submitfield, render_textarea, render_select %}
+
+{% block content %}
+  <div style="height: 64px;"></div>
+  <div class="cstm-container">
+      <div class="cstm-general-container-content cstm-flex-column cstm-text-center">
+        <h2 class="mdc-typography--headline2 cstm-gutterbottom">craft your pitch.</h2>
+        <p class="mdc-typography--body1">Make that one minute worth remembering. 😉</p>
+        <form action="/pitchform/add/{{ category_id }}" method="post" class="form pitch-form" role="form">
+          {{ form.csrf_token }}
+          {{ render_textfield(form.title, class='mdc-text-field__input cstm-fullwidth') }}
+          {{ render_textarea(form.body, class='mdc-text-field__input cstm-fullwidth') }}
+          {{ render_select(form.category, pitch_categories) }}
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <p class="mdc-typography--body1" style="color: red;">{{ messages[0] }}</p>
+            {% endif %}
+          {% endwith %}
+          <div class="cstm-form-actions">
+            {{ render_submitfield(form.submit, class='mdc-button mdc-button--raised') }}
+          </div>
+        </form>
+      </div>
+  </div>
+  <script>
+    console.log(mdc)
+    const textFieldElements = [].slice.call(document.querySelectorAll('.mdc-text-field'));
+    textFieldElements.forEach((textFieldEl) => {
+      mdc.textField.MDCTextField.attachTo(textFieldEl);
+    });
+    const selectElements = [].slice.call(document.querySelectorAll('.mdc-select'));
+    selectElements.forEach(selectElement => {
+      mdc.select.MDCSelect.attachTo(selectElement);
+    })
+    </script>
+{% endblock %}

@@ -24,9 +24,7 @@ def login_post():
   user = User.query.filter_by(email=email).first()
 
   if not user or not check_password_hash(user.password_secure, password):
-    print(check_password_hash(user.password_secure, password))
     flash('please check your login details and try again')
-    print('*' * 111)
 
     return render_template('auth/login.html', form=form)
 
@@ -45,7 +43,7 @@ def register_post():
   loginForm = LoginForm()
   registerForm = RegistrationForm()
 
-  username = request.form.get('username')
+  name = request.form.get('name')
   email = request.form.get('email')
   password = request.form.get('password')
   password_confirm = request.form.get('password_confirm')
@@ -60,7 +58,7 @@ def register_post():
     flash('Passwords don\'t match')
     return render_template('auth/register.html', form=registerForm)
 
-  new_user = User(username=username, email=email, password_secure=generate_password_hash(password, method='sha256'))
+  new_user = User(name=name, email=email, password_secure=generate_password_hash(password, method='sha256'))
   db.session.add(new_user)
   db.session.commit()
 
