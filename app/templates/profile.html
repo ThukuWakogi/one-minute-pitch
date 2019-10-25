@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="height: 64px;"></div>
+  <div class="cstm-container">
+    <div class="mdc-layout-grid cstm-height-100">
+      <div class="mdc-layout-grid__inner cstm-height-100">
+        <div class="mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-12-phone">
+          <div class="mdc-card cstm-padding">
+            <div class="cstm-user-info cstm-flex-column-justify-align-center">
+              <div class="avatar-big">
+                <i class="material-icons">person</i>
+              </div>
+              <h4 class="mdc-typography mdc-typography--headline4">{{ user.name }}</h4>
+              <p class="mdc-typography mdc-typography--body1">{{ user.email }}</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="cstm-height-100 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-12-phone"
+          style="overflow: auto;"
+        >
+          {% if number_of_pitches == 0 %}
+            <div class="mdc-card cstm-padding">
+              <div>
+                <h5 class="mdc-typography mdc-typography--headline5">this user has not posted any pitches yet</h5>
+              </div>
+            </div>
+          {% else %}
+            {% for pitch in pitches %}
+              <div class="mdc-card cstm-padding cstm-margin cstm-pitch-content ">
+                <h5 class="mdc-typography mdc-typography--headline5 cstm-gutterbottom-1">{{ pitch.title }}</h5>
+                <p class="mdc-typography mdc-typography--body1 cstm-gutterbottom-1">{{ pitch.body }}</p>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

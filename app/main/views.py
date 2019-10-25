@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for
 from . import main
-from ..models import PitchCategory, Pitch, User, PitchComment
+from ..models import PitchCategory, Pitch, User, PitchComment, PitchVote
 from .. import db
 from flask_login import login_required, current_user
 from .forms import PitchForm, PitchCommentForm
@@ -142,3 +142,23 @@ def get_user(_id, users):
       user_to_return = user
   
   return user_to_return
+
+@main.route('/user/<int:user_id>')
+def load_user_profile(user_id):
+  '''
+  loads user data to profile.html based on url parameter passed
+  '''
+
+  user = User.query.filter_by(id=user_id).first()
+  pitches = Pitch.query.filter_by(user_id=user_id).all()
+
+  return render_template('profile.html', user=user, pitches=pitches, number_of_pitches=len(pitches))
+
+# @main.route('/upvote/<int:pitch_id>')
+# def upvote_pitch(pitch_id):
+#   '''
+#   registers that user has upvoted a pitch
+#   '''
+
+#   upvotes = PitchVote.query.filter_by(pitch_id=pitch_id, vote_type='upvote')
+#   downvotes = PitchVote.query.filter_by(pitch_id=pitch_id, vote_type='downvote')

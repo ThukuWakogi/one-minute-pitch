@@ -239,6 +239,20 @@ body, html {
   color: #2f2f2f;
 }
 
+.avatar-big {
+  height: 64px;
+  width: 64px;
+  border-radius: 50px;
+  background: #bcbcbc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2f2f2f;
+  & > i {
+    font-size: 36px;
+  }
+}
+
 .cstm-comments-user-info {
   display: flex;
   align-items: center;
@@ -250,5 +264,32 @@ body, html {
 .cstm-comments-content {
   & > p {
     margin: 8px 0px 8px 48px;
+  }
+}
+
+.cstm-margin {
+  margin: multiply-value(1.5) 0px;
+}
+
+.cstm-padding {
+  padding: multiply-value(1)
+}
+
+.cstm-user-info {
+  & > * {
+    margin: multiply-value(1) 0px multiply-value(1) 0px;
+  }
+}
+
+.cstm-height-100 {
+  height: 100%
+}
+
+.cstm-action-icon {
+  display: flex !important;
+  margin-right: 8px;
+  span {
+    margin-left: 6px;
+    font-size: 16px;
   }
 }
