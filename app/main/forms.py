@@ -8,3 +8,7 @@ class PitchForm(FlaskForm):
   body = TextAreaField('Pitch goes here...', validators=[Required()])
   category = HiddenField('Choose category', validators=[Required()])
   submit = SubmitField('add pitch')
+
+class PitchCommentForm(FlaskForm):
+  comment = StringField('what can you say about this comment', validators=[Required()])
+  submit = SubmitField('submit')

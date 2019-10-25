@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% from "render_elements.html" import render_submitfield, render_textfield %}
+
+{% block content %}
+  <div style="height: 64px;"></div>
+  <div class="cstm-container">
+    <div class="cstm-pitch-div cstm-flex-column-align-center">
+      <div class="cstm-pitch-card mdc-card">
+        <div>
+          <h2 class="mdc-typography mdc-typography--headline6 cstm-gutterbottom-0-5">
+            {{ pitch.title }}
+          </h2>
+          <h3 class="mdc-typography mdc-typography--subtitle2 cstm-gutterbottom-1">by {{ pitch_owner.name }}</h3>
+          <p class="mdc-typography mdc-typography--caption">Category: <a href="/pitches/{{ pitch_category.id }}" >{{ pitch_category.category }}</a></p>
+          <div class="cstm-divider"></div>
+          <div class="cstm-gutterbottom-1 mdc-typography mdc-typography--body1">
+            {{ pitch.body }}
+          </div>
+        </div>
+        <div class="mdc-card__actions">
+          <div class="mdc-card__action-icons">
+            <a href="" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-label="upvote" aria-hidden="false">
+              <i class="material-icons mdc-icon-button__icon">thumb_up_alt</i>
+            </a>
+            <a href="" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-label="downvote" aria-hidden="false">
+              <i class="material-icons mdc-icon-button__icon">thumb_down_alt</i>
+            </a>
+            <form action="/comment/{{ pitch.id }}" method="post" class="form" role="form">
+                {{ form.csrf_token }}
+                {{ render_textfield(form.comment, class='mdc-text-field__input cstm-fullwidth') }}
+                {{ render_submitfield(form.submit, class='mdc-button mdc-button--raised') }}
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="cstm-pitch-comment-card mdc-card">
+        {% if number_of_pitch_comments == 0 %}
+          <div class="mdc-typography mdc-typography--body1">No comments. lol.</div>
+        {% else %}
+          {% for comment in comments_and_users %}
+            <div class="cstm-comments-div">
+              <div class="cstm-comments-user-info">
+                <div class="avatar">
+                  <i class="material-icons">person</i>
+                </div>
+                <div>
+                  <h6 class="mdc-typography mdc-typography--headline6">{{ comment['user'].name }}</h6>
+                </div>
+              </div>
+              <div class="cstm-comments-content">
+                <p class="mdc-typography mdc-typography--body1">{{ comment['comment'].comment }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script>
+      const textFieldElements = [].slice.call(document.querySelectorAll('.mdc-text-field'));
+      textFieldElements.forEach((textFieldEl) => {
+        mdc.textField.MDCTextField.attachTo(textFieldEl);
+      });
+  </script>
+{% endblock %}
